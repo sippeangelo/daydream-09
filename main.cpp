@@ -8,11 +8,14 @@
 //int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 int main()
 {
+	// Hide the cursor
+	ShowCursor(false);
+
 	Engine::WindowParams wp;
 	wp.title = "Daydream Engine";
 	wp.width = 800;
 	wp.height = 600;
-	wp.fullscreen = false;
+	wp.fullscreen = true;
 	Engine::Window* Window = new Engine::Window(&wp);
 
 	// Direct3D
@@ -29,7 +32,7 @@ int main()
 				   OUT_DEFAULT_PRECIS,    // default precision
 				   DEFAULT_QUALITY,    // default quality
 				   DEFAULT_PITCH || FF_DONTCARE,    // more defaults...
-				   "Lucida Console",    // typeface "Arial"
+				   "Courier",    // typeface "Arial"
 				   &font_1);    // address of the font object created above
 
 	int i = 0;
@@ -41,7 +44,7 @@ int main()
 		    // create a RECT to contain the text
 			static RECT textbox; 
 			SetRect(&textbox, 0, 0, 640, 480); 
-	font_1->
+
 			// draw the Hello World text
 			font_1->DrawTextA(NULL,
 							  "The Matrix has you...",
