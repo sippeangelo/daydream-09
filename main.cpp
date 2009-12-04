@@ -2,11 +2,13 @@
 #include "Engine/Window.h"
 #include "System/Time.h"
 #include "Render/D3D/D3D.h"
+#include "Render/D3D/Text.h"
 #include <iostream>
 #include <windows.h>
+#include <d3dx9.h>
 
-//int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-int main()
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+//int main()
 {
 	// Hide the cursor
 	ShowCursor(false);
@@ -15,52 +17,38 @@ int main()
 	wp.title = "Daydream Engine";
 	wp.width = 800;
 	wp.height = 600;
-	wp.fullscreen = true;
+	wp.fullscreen = false;
 	Engine::Window* Window = new Engine::Window(&wp);
 
 	// Direct3D
 	Render::D3D* D3D = new Render::D3D(Window->hWnd, &wp);
 
-	LPD3DXFONT font_1;    // create a font object
+	// Some text
+	Render::Text* Text1 = new Render::Text(D3D);
+	Text1->SetFont("Courier", 20, FW_BOLD, false);
+	Text1->SetText("Wake up, Neo...");
 
-	D3DXCreateFont(D3D->m_d3ddev,    // the Direct3D Device
-				   20, 0,    // font size twenty with the default width
-				   FW_BOLD,    // normal font weight
-				   1,    // no mipmap levels
-				   FALSE,    // not italic
-				   DEFAULT_CHARSET,    // default character set
-				   OUT_DEFAULT_PRECIS,    // default precision
-				   DEFAULT_QUALITY,    // default quality
-				   DEFAULT_PITCH || FF_DONTCARE,    // more defaults...
-				   "Courier",    // typeface "Arial"
-				   &font_1);    // address of the font object created above
-
-	int i = 0;
+	int i = 1;
 
 	while (Window->ProcessQueue())
 	{
 		D3D->BeginScene();
 
-		    // create a RECT to contain the text
-			static RECT textbox; 
-			SetRect(&textbox, 0, 0, 640, 480); 
-
-			// draw the Hello World text
-			font_1->DrawTextA(NULL,
-							  "The Matrix has you...",
-							  i,
-							  &textbox,
-							  NULL,
-							  D3DCOLOR_ARGB(255, 0, 255, 0));
+			Text1->Render(i);
 
 		D3D->EndScene();
 
 		D3D->Render();
 
-		if (i < 22)
-			i++;
-
 		Sleep(50);
+		
+		if (i >= Text1->GetText().length())
+		{
+			i = 1;
+			Text1->SetText("Follow the white rabbit..");
+		}
+		else
+			i++;
 	}
 
 	return 0;

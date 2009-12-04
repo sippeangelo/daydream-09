@@ -201,6 +201,10 @@
 						RelativePath=".\Render\D3D\D3D.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\Render\D3D\Text.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 		</Filter>
@@ -245,6 +249,10 @@
 					>
 					<File
 						RelativePath=".\Render\D3D\D3D.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Render\D3D\Text.h"
 						>
 					</File>
 				</Filter>

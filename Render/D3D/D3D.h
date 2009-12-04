@@ -12,6 +12,13 @@
 
 #pragma comment(lib, "d3d9.lib")
 
+#define CUSTOMFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
+struct CUSTOMVERTEX
+{
+    FLOAT x, y, z, rhw;    // from the D3DFVF_XYZRHW flag
+    DWORD color;    // from the D3DFVF_DIFFUSE flag
+};
+
 namespace Render
 {
 	class D3D
@@ -19,6 +26,7 @@ namespace Render
 	public:
 		LPDIRECT3D9 m_d3d;
 		LPDIRECT3DDEVICE9 m_d3ddev;
+		LPDIRECT3DVERTEXBUFFER9 m_vbuffer;
 
 		// Initialize D3D
 		D3D(HWND hWnd, Engine::WindowParams* wp);
