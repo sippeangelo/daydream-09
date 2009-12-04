@@ -21,7 +21,7 @@ D3D::D3D(HWND hWnd, Engine::WindowParams* wp)
 
 	m_d3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &m_d3ddev);
 
-	m_d3ddev->CreateVertexBuffer(3*sizeof(CUSTOMVERTEX),
+	m_d3ddev->CreateVertexBuffer(4*sizeof(CUSTOMVERTEX),
 							   0,
 							   CUSTOMFVF,
 							   D3DPOOL_MANAGED,
@@ -31,9 +31,10 @@ D3D::D3D(HWND hWnd, Engine::WindowParams* wp)
     // create three vertices using the CUSTOMVERTEX struct built earlier
     CUSTOMVERTEX vertices[] =
     {
-        { 0.0f, 0.0f, 0.5f, 1.0f, D3DCOLOR_XRGB(0, 255, 0), },
-        { 10.0f, 0.0f, 0.5f, 1.0f, D3DCOLOR_XRGB(0, 255, 0), },
-        { 0.0f, 20.0f, 0.5f, 1.0f, D3DCOLOR_XRGB(0, 255, 0), },
+        { 0.0f, 0.0f, 1.0f, 1.0f, D3DCOLOR_XRGB(0, 255, 0), },
+        { 10.0f, 0.0f, 1.0f, 1.0f, D3DCOLOR_XRGB(0, 255, 0), },
+        { 0.0f, 20.0f, 1.0f, 1.0f, D3DCOLOR_XRGB(0, 255, 0), },
+        { 10.0f, 20.0f, 1.0f, 1.0f, D3DCOLOR_XRGB(0, 255, 0), },
     };
 
     VOID* pVoid;    // the void pointer
@@ -73,7 +74,7 @@ void D3D::BeginScene(bool clear)
         m_d3ddev->SetStreamSource(0, m_vbuffer, 0, sizeof(CUSTOMVERTEX));
 
         // copy the vertex buffer to the back buffer
-        m_d3ddev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 1);
+        m_d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 1);
 }
 
 /*
