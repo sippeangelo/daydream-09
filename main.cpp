@@ -4,7 +4,7 @@
 #include "Render/D3D/D3D.h"
 #include "Render/D3D/Text.h"
 #include <iostream>
-#include <windows.h>
+#include <windowss.h>
 #include <d3dx9.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
