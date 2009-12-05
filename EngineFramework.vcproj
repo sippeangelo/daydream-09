@@ -187,7 +187,7 @@
 				Name="System"
 				>
 				<File
-					RelativePath=".\System\Time.cpp"
+					RelativePath=".\System\Timer.cpp"
 					>
 				</File>
 			</Filter>
@@ -237,7 +237,7 @@
 				Name="System"
 				>
 				<File
-					RelativePath=".\System\Time.h"
+					RelativePath=".\System\Timer.h"
 					>
 				</File>
 			</Filter>

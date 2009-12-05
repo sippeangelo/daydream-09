@@ -47,9 +47,9 @@ void Window::MakeWindow(WindowParams* wp)
 	if (!wp->nCmdShow)
 		wp->nCmdShow = SW_SHOWNORMAL;
 	if (!wp->x)
-		wp->x = 0;
+		wp->x = CW_USEDEFAULT;
 	if (!wp->y)
-		wp->y = 0;
+		wp->y = CW_USEDEFAULT;
 
     // the handle for the window, filled by a function
     // this struct holds information for the window class
