@@ -12,7 +12,7 @@ D3D::D3D(HWND hWnd, Engine::WindowParams* wp)
 	d3dpp.Windowed = !wp->fullscreen;
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.hDeviceWindow = hWnd;
-	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
+	//d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE; // No VSYNC
 	if (wp->fullscreen)
 	{
 		d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;

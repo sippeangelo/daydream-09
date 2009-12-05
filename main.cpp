@@ -55,7 +55,7 @@ int main()
 
 		D3D->Render();
 
-		//Sleep(1000);
+		//Sleep(rand() % 100 + 1);
 	}
 
 	return 0;

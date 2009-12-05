@@ -15,11 +15,19 @@ Timer::Timer(int start_offset)
 	Delta = 0;
 	m_LastTick = ThisTick + start_offset;
 	StartTime = ThisTick + start_offset;
+
+	// FPS counter
+	//memset(m_TickLog, 0, MAXSAMPLES);
+	for (int i = 0; i < MAXSAMPLES; i++)
+		m_TickLog[i] = 0;
+	m_TickSum = 0;
+	m_TickLogIndex = 0;
+	m_TickLogCurrentValueCount = 0;
 }
 
 Timer::TimerInfo Timer::Update()
 {
-	TimerInfo inf;
+	TimerInfo info;
 
 	// Get current tick
 	int ThisTick = GetTickCount(); 
@@ -27,25 +35,26 @@ Timer::TimerInfo Timer::Update()
 	// Delta
 	int diff = (ThisTick - m_LastTick);
 	Delta = diff;
-	inf.Delta = Delta;
+	info.Delta = Delta;
 
-	// FPS
-	// HACK: This FPS counter is choppy and buggy, don't want to use it yet
-	/*m_TickSum -= m_TickList[m_TickIndex];
-	m_TickSum += diff;
-	m_TickList[m_TickIndex] = diff;
-	if (++m_TickIndex == MAXSAMPLES)
-		m_TickIndex = 0;
-	FPS = (int)(1000 / ((float)m_TickSum / MAXSAMPLES));
-	inf.FPS = FPS;*/
-
+	// FPS Counter
 	if (diff == 0)
 		diff = 1;
 
-	FPS = 1000 / diff;
+	m_TickSum += diff;
+	m_TickSum -= m_TickLog[m_TickLogIndex];
+	m_TickLog[m_TickLogIndex] = diff;
+	if (++m_TickLogIndex == MAXSAMPLES)
+		m_TickLogIndex = 0;
+	if (m_TickLogCurrentValueCount <= MAXSAMPLES)
+		m_TickLogCurrentValueCount++;
+
+	FPS = 1000 / ((float)m_TickSum / m_TickLogCurrentValueCount);
+
+	info.FPS = FPS;
 
 	// Update last tick
 	m_LastTick = ThisTick;
 
-	return inf;
+	return info;
 }
