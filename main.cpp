@@ -1,6 +1,7 @@
 #include "Engine/Vector.h"
 #include "Engine/Window.h"
 #include "System/Timer.h"
+#include "System/Thread.h"
 #include "Render/D3D/D3D.h"
 #include "Render/D3D/Text.h"
 #include <iostream>
@@ -8,6 +9,34 @@
 #include <d3dx9.h>
 #include <string>
 #include <sstream>
+#include <process.h>
+
+DWORD WINAPI _ConsoleThread(void* Param)
+{
+	// Set up the developer console
+	system("title Developer Console");
+	std::cout << "Daydream Engine\nCopyright (C) Simon Holmberg 2009\n" << std::endl;
+
+	while (true)
+	{
+		std::cout << "> ";
+		std::string in;
+		char buffer[3000];
+		std::cin.getline(buffer, 3000);
+
+		std::string command = buffer;
+
+		if (command == "exit" || command == "quit")
+		{
+			PostQuitMessage(0);
+			return 0;
+		}
+		else
+		{
+			std::cout << "Command \"" << command << "\" not recognized" << std::endl;
+		}
+	}
+}
 
 //int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 int main()
@@ -15,11 +44,16 @@ int main()
 	// Hide the cursor
 	ShowCursor(true);
 
+	// Start the console thread
+	System::Thread* Thread = new System::Thread(&_ConsoleThread);
+	Thread->Start();
+
 	Engine::WindowParams wp;
 	wp.title = "Daydream Engine";
 	wp.width = 800;
 	wp.height = 600;
 	wp.fullscreen = false;
+	wp.vsync = true;
 	Engine::Window* Window = new Engine::Window(&wp);
 
 	// Direct3D
@@ -38,7 +72,7 @@ int main()
 		Timer->Update();
 
 		int delta = Timer->Delta;
-		int FPS = Timer->FPS;
+		int FPS = (int)Timer->FPS;
 
 		D3D->BeginScene();
 	
@@ -46,7 +80,7 @@ int main()
 
 			std::stringstream ss;
 			ss << "Delta time: " << delta << "\nFPS: " << FPS;
-			std::cout << ss.str();
+			//std::cout << ss.str();
 			Text1->SetPos(0, 0);
 			Text1->SetText(ss.str());
 			Text1->Render();
@@ -55,6 +89,7 @@ int main()
 
 		D3D->Render();
 
+		// DEBUG: Sleep for a random ammount of time to test the FPS counter
 		//Sleep(rand() % 100 + 1);
 	}
 

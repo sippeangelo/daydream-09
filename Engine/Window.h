@@ -16,6 +16,7 @@ namespace Engine
 			this->x = 0;
 			this->y = 0;
 			this->fullscreen = false;
+			this->vsync = false;
 		}
 
 		std::string title;
@@ -24,6 +25,7 @@ namespace Engine
 		int x;
 		int y;
 		bool fullscreen;
+		bool vsync;
 		int nCmdShow;
 		HINSTANCE hInstance;
 	};

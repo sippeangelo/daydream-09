@@ -187,6 +187,10 @@
 				Name="System"
 				>
 				<File
+					RelativePath=".\System\Thread.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\System\Timer.cpp"
 					>
 				</File>
@@ -236,6 +240,10 @@
 			<Filter
 				Name="System"
 				>
+				<File
+					RelativePath=".\System\Thread.h"
+					>
+				</File>
 				<File
 					RelativePath=".\System\Timer.h"
 					>
