@@ -1,8 +1,8 @@
 #include "Text.h"
 
-using namespace Render;
+using namespace Render::D3D;
 
-Text::Text(D3D* d3d)
+Text::Text(Interface* d3d)
 {
 	// Store the pointer to our D3D class
 	m_d3d = d3d;

@@ -1,8 +1,8 @@
 #include "D3D.h"
 
-using namespace Render;
+using namespace Render::D3D;
 
-D3D::D3D(HWND hWnd, Engine::WindowParams* wp)
+Interface::Interface(HWND hWnd, Engine::WindowParams* wp)
 {
 	// Create the Direct3D interface
 	m_d3d = Direct3DCreate9(D3D_SDK_VERSION);
@@ -24,7 +24,7 @@ D3D::D3D(HWND hWnd, Engine::WindowParams* wp)
 	m_d3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &m_d3ddev);
 }
 
-D3D::~D3D()
+Interface::~Interface()
 {
 	// Release
 	m_d3ddev->Release();
@@ -32,13 +32,13 @@ D3D::~D3D()
 
 }
 
-void D3D::BeginScene()
+void Interface::BeginScene()
 {
 	// Overloaded BeginScene, clear by default
 	BeginScene(true);
 }
 
-void D3D::BeginScene(bool clear)
+void Interface::BeginScene(bool clear)
 {
 	// Clear the back buffer to #00000
 	if (clear)
@@ -49,16 +49,16 @@ void D3D::BeginScene(bool clear)
 }
 
 /*
-	Rendering goes between those functions
+	Rendering goes here between
 */
 
-void D3D::EndScene()
+void Interface::EndScene()
 {
 	// End drawing the scene
 	m_d3ddev->EndScene();
 }
 
-void D3D::Render()
+void Interface::Render()
 {
 	// Render the scene
 	m_d3ddev->Present(NULL, NULL, NULL, NULL);

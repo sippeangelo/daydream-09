@@ -202,7 +202,7 @@
 					Name="D3D"
 					>
 					<File
-						RelativePath=".\Render\D3D\D3D.cpp"
+						RelativePath=".\Render\D3D\Interface.cpp"
 						>
 					</File>
 					<File
@@ -260,7 +260,15 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Render\D3D\Interface.h"
+						>
+					</File>
+					<File
 						RelativePath=".\Render\D3D\Text.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Render\D3D\vertex_formats.h"
 						>
 					</File>
 				</Filter>

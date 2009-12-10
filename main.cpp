@@ -2,8 +2,7 @@
 #include "Engine/Window.h"
 #include "System/Timer.h"
 #include "System/Thread.h"
-#include "Render/D3D/D3D.h"
-#include "Render/D3D/Text.h"
+#include "Render/D3D.h"
 #include <iostream>
 #include <windows.h>
 #include <d3dx9.h>
@@ -13,29 +12,18 @@
 
 DWORD WINAPI _ConsoleThread(void* Param)
 {
-	// Set up the developer console
-	system("title Developer Console");
-	std::cout << "Daydream Engine\nCopyright (C) Simon Holmberg 2009\n" << std::endl;
+	Engine::WindowParams wp;
+	wp.title = "Developer Console";
+	wp.width = 800;
+	wp.height = 200;
+	Engine::Window* ConsoleWindow = new Engine::Window(&wp);
 
-	while (true)
+	while (ConsoleWindow->ProcessQueue())
 	{
-		std::cout << "> ";
-		std::string in;
-		char buffer[3000];
-		std::cin.getline(buffer, 3000);
 
-		std::string command = buffer;
-
-		if (command == "exit" || command == "quit")
-		{
-			PostQuitMessage(0);
-			return 0;
-		}
-		else
-		{
-			std::cout << "Command \"" << command << "\" not recognized" << std::endl;
-		}
 	}
+
+	return 0;
 }
 
 //int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -57,13 +45,13 @@ int main()
 	Engine::Window* Window = new Engine::Window(&wp);
 
 	// Direct3D
-	Render::D3D* D3D = new Render::D3D(Window->hWnd, &wp);
+	Render::D3D::Interface* D3D = new Render::D3D::Interface(Window->hWnd, &wp);
 
 	// Timer
 	System::Timer* Timer = new System::Timer(0);
 
 	// Some text
-	Render::Text* Text1 = new Render::Text(D3D);
+	Render::D3D::Text* Text1 = new Render::D3D::Text(D3D);
 	Text1->SetFont("Courier", 20, FW_BOLD, false);
 	Text1->SetPos(Text1->GetPos().x, 100);
 

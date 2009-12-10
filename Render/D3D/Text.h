@@ -1,9 +1,10 @@
-#include "D3D.h"
+#ifndef TEXT_H
+#define TEXT_H
+
+#include "Interface.h"
 #include <string>
 
-namespace Render {
-
-
+namespace Render { namespace D3D {
 	class Text
 	{
 	public:
@@ -13,7 +14,7 @@ namespace Render {
 			int y;
 		};
 
-		Text(D3D* d3d);
+		Text(Interface* d3d);
 		void Render();
 		void Render(int length);
 		void SetText(std::string text);
@@ -22,11 +23,13 @@ namespace Render {
 		void SetPos(int x, int y);
 		Position GetPos();
 	private:
-		D3D* m_d3d;
+		Interface* m_d3d;
 		LPD3DXFONT m_Font;
 		std::string m_Text;
 
 		int m_pos_x;
 		int m_pos_y;
 	};
-}
+} }
+
+#endif

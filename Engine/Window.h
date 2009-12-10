@@ -28,6 +28,7 @@ namespace Engine
 		bool vsync;
 		int nCmdShow;
 		HINSTANCE hInstance;
+		WNDPROC* WndProc;
 	};
 
 	class Window

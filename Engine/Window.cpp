@@ -61,7 +61,7 @@ void Window::MakeWindow(WindowParams* wp)
     // fill in the struct with the needed information
     wc.cbSize = sizeof(WNDCLASSEX);
     wc.style = CS_HREDRAW | CS_VREDRAW;
-    wc.lpfnWndProc = WndProc;
+	wc.lpfnWndProc = WndProc;
 	wc.hInstance = wp->hInstance;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 	//wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
