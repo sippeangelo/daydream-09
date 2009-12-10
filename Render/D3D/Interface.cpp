@@ -22,14 +22,20 @@ Interface::Interface(HWND hWnd, Engine::WindowParams* wp)
 	}
 
 	m_d3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &m_d3ddev);
+
+	// Initialize sprite to null
+	m_d3dspt = NULL;
 }
 
 Interface::~Interface()
 {
 	// Release
-	m_d3ddev->Release();
-	m_d3d->Release();
-
+	if (m_d3ddev != NULL)
+		m_d3ddev->Release();
+	if (m_d3d != NULL)
+		m_d3d->Release();
+	if (m_d3dspt != NULL)
+		m_d3dspt->Release();
 }
 
 void Interface::BeginScene()
@@ -46,6 +52,10 @@ void Interface::BeginScene(bool clear)
 
 	// Start the scene
 	m_d3ddev->BeginScene();
+
+	// Start the sprite render
+	if (m_d3dspt != NULL)
+		m_d3dspt->Begin(NULL);
 }
 
 /*
@@ -54,6 +64,10 @@ void Interface::BeginScene(bool clear)
 
 void Interface::EndScene()
 {
+	// Start the sprite render
+	if (m_d3dspt != NULL)
+		m_d3dspt->End();
+
 	// End drawing the scene
 	m_d3ddev->EndScene();
 }

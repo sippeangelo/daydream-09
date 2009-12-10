@@ -4,7 +4,7 @@ using namespace Render::D3D;
 
 Text::Text(Interface* d3d)
 {
-	// Store the pointer to our D3D class
+	// Store the pointer to our Interface class
 	m_d3d = d3d;
 
 	SetFont("Courier", 20, FW_BOLD, false);

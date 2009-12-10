@@ -206,6 +206,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Render\D3D\Sprite.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Render\D3D\Text.cpp"
 						>
 					</File>
@@ -269,6 +273,10 @@
 					>
 					<File
 						RelativePath=".\Render\D3D\Interface.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Render\D3D\Sprite.h"
 						>
 					</File>
 					<File

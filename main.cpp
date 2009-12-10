@@ -26,15 +26,15 @@ DWORD WINAPI _ConsoleThread(void* Param)
 	return 0;
 }
 
-//int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-int main()
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+//int main()
 {
 	// Hide the cursor
 	ShowCursor(true);
 
 	// Start the console thread
 	System::Thread* Thread = new System::Thread(&_ConsoleThread);
-	Thread->Start();
+	//Thread->Start();
 
 	Engine::WindowParams wp;
 	wp.title = "Daydream Engine";
@@ -55,6 +55,15 @@ int main()
 	Text1->SetFont("Courier", 20, FW_BOLD, false);
 	Text1->SetPos(Text1->GetPos().x, 100);
 
+	// A sprite
+	/*LPD3DXSPRITE d3dspt;    // the pointer to our Direct3D Sprite interface
+	D3DXCreateSprite(D3D->m_d3ddev, &d3dspt);    // create the Direct3D Sprite object
+	LPDIRECT3DTEXTURE9 sprite;    // the pointer to the sprite
+	D3DXCreateTextureFromFile(D3D->m_d3ddev, "sprite.bmp", &sprite);*/
+	Render::D3D::Sprite* Sprite = new Render::D3D::Sprite(D3D);
+	Sprite->SetTexture("daydream_black.bmp");
+	Sprite->SetPos(Engine::Vector(100, 100));
+
 	while (Window->ProcessQueue())
 	{
 		Timer->Update();
@@ -72,6 +81,11 @@ int main()
 			Text1->SetPos(0, 0);
 			Text1->SetText(ss.str());
 			Text1->Render();
+
+			// Render testsprite
+			Sprite->SetPos(800 / 2, 600 / 2);
+			Sprite->SetCenter(512 / 2, 512 / 2);
+			Sprite->Render();
 
 		D3D->EndScene();
 

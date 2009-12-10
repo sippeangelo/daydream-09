@@ -19,6 +19,7 @@ namespace Render { namespace D3D {
 	public:
 		LPDIRECT3D9 m_d3d;
 		LPDIRECT3DDEVICE9 m_d3ddev;
+		LPD3DXSPRITE m_d3dspt;
 
 		// Initialize D3D
 		Interface(HWND hWnd, Engine::WindowParams* wp);
