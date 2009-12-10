@@ -210,6 +210,10 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="OpenGL"
+					>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -252,13 +256,17 @@
 			<Filter
 				Name="Render"
 				>
+				<File
+					RelativePath=".\Render\D3D.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Render\GL.h"
+					>
+				</File>
 				<Filter
 					Name="D3D"
 					>
-					<File
-						RelativePath=".\Render\D3D\D3D.h"
-						>
-					</File>
 					<File
 						RelativePath=".\Render\D3D\Interface.h"
 						>
@@ -271,6 +279,10 @@
 						RelativePath=".\Render\D3D\vertex_formats.h"
 						>
 					</File>
+				</Filter>
+				<Filter
+					Name="OpenGL"
+					>
 				</Filter>
 			</Filter>
 		</Filter>
