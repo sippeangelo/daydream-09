@@ -167,6 +167,10 @@
 				Name="Engine"
 				>
 				<File
+					RelativePath=".\Engine\Color.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Engine\Vector.cpp"
 					>
 				</File>
@@ -228,6 +232,10 @@
 			<Filter
 				Name="Engine"
 				>
+				<File
+					RelativePath=".\Engine\Color.h"
+					>
+				</File>
 				<File
 					RelativePath=".\Engine\Vector.h"
 					>

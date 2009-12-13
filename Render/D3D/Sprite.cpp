@@ -14,6 +14,7 @@ Sprite::Sprite(Interface* d3d)
 
 	m_Position = D3DXVECTOR3(0, 0, 0);
 	m_Center = D3DXVECTOR3(0, 0, 0);
+	m_Color = D3DCOLOR_RGBA(255, 255, 255, 255);
 }
 
 void Sprite::SetTexture(std::string file)
@@ -22,7 +23,7 @@ void Sprite::SetTexture(std::string file)
 }
 
 /*
-	Sprite::SetPos(Engine::Vector vec)
+	Sprite::SetPos()
 */
 void Sprite::SetPos(Engine::Vector vec)
 {
@@ -38,7 +39,7 @@ void Sprite::SetPos(float x, float y, float z)
 }
 
 /*
-	Sprite::SetCenter(Engine::Vector vec)
+	Sprite::SetCenter()
 */
 void Sprite::SetCenter(Engine::Vector vec)
 {
@@ -53,7 +54,18 @@ void Sprite::SetCenter(float x, float y, float z)
 	m_Center = D3DXVECTOR3(x, y, z);
 }
 
+/*
+	Sprite::SetColor()
+*/
+void Sprite::SetColor(int r, int g, int b, int a)
+{
+	m_Color = D3DCOLOR_RGBA(r, g, b, a);
+}
+void Sprite::SetColor(D3DCOLOR col)
+{
+	m_Color = col;
+}
 void Sprite::Render()
 {
-	m_d3d->m_d3dspt->Draw(m_Texture, NULL, &m_Center, &m_Position, D3DCOLOR_XRGB(255, 255, 255));  // draw it!
+	m_d3d->m_d3dspt->Draw(m_Texture, NULL, &m_Center, &m_Position, m_Color);
 }

@@ -41,7 +41,7 @@ void Text::Render(int length)
 	static RECT textbox; 
 	SetRect(&textbox, m_pos_x, m_pos_y, 640, 480); 
 
-	m_Font->DrawTextA(NULL, m_Text.c_str(), length, &textbox, NULL, D3DCOLOR_ARGB(255, 0, 255, 0));
+	m_Font->DrawTextA(NULL, m_Text.c_str(), length, &textbox, NULL, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 
 void Text::SetText(std::string text)

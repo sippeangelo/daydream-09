@@ -87,6 +87,15 @@ void Window::MakeWindow(WindowParams* wp)
                           wp->hInstance,    // application handle
                           NULL);    // used with multiple windows, NULL
 
+	// Now resize the window to the right resolution excluding the window borders, if any
+	RECT rcClient, rcWindow;
+	POINT ptDiff;
+	GetClientRect(hWnd, &rcClient);
+	GetWindowRect(hWnd, &rcWindow);
+	ptDiff.x = (rcWindow.right - rcWindow.left) - rcClient.right;
+	ptDiff.y = (rcWindow.bottom - rcWindow.top) - rcClient.bottom;
+	MoveWindow(hWnd, rcWindow.left, rcWindow.top, wp->width + ptDiff.x, wp->height + ptDiff.y, TRUE);
+
     // display the window on the screen
 	ShowWindow(hWnd, wp->nCmdShow);
 }

@@ -17,6 +17,8 @@ namespace Render { namespace D3D {
 		void SetCenter(Engine::Vector vec);
 		void SetCenter(float x, float y);
 		void SetCenter(float x, float y, float z);
+		void SetColor(int r, int g, int b, int a);
+		void SetColor(D3DCOLOR col);
 		void Render();
 
 	private:
@@ -24,6 +26,7 @@ namespace Render { namespace D3D {
 		LPDIRECT3DTEXTURE9 m_Texture;
 		D3DXVECTOR3 m_Center;
 		D3DXVECTOR3 m_Position;
+		D3DCOLOR m_Color;
 	};
 }}
 

@@ -1,4 +1,5 @@
 #include "Engine/Vector.h"
+#include "Engine/Color.h"
 #include "Engine/Window.h"
 #include "System/Timer.h"
 #include "System/Thread.h"
@@ -9,6 +10,7 @@
 #include <string>
 #include <sstream>
 #include <process.h>
+#include <time.h>
 
 DWORD WINAPI _ConsoleThread(void* Param)
 {
@@ -26,9 +28,13 @@ DWORD WINAPI _ConsoleThread(void* Param)
 	return 0;
 }
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-//int main()
+//int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int main()
 {
+	Color col(50, 50, 50);
+
+	return 0;
+
 	// Hide the cursor
 	ShowCursor(true);
 
@@ -41,7 +47,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	wp.width = 800;
 	wp.height = 600;
 	wp.fullscreen = false;
-	wp.vsync = true;
+	wp.vsync = false;
 	Engine::Window* Window = new Engine::Window(&wp);
 
 	// Direct3D
@@ -52,8 +58,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// Some text
 	Render::D3D::Text* Text1 = new Render::D3D::Text(D3D);
-	Text1->SetFont("Courier", 20, FW_BOLD, false);
-	Text1->SetPos(Text1->GetPos().x, 100);
+	Text1->SetFont("Courier New", 18, NULL, false);
+	Text1->SetPos(4, 0);
 
 	// A sprite
 	/*LPD3DXSPRITE d3dspt;    // the pointer to our Direct3D Sprite interface
@@ -61,31 +67,37 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	LPDIRECT3DTEXTURE9 sprite;    // the pointer to the sprite
 	D3DXCreateTextureFromFile(D3D->m_d3ddev, "sprite.bmp", &sprite);*/
 	Render::D3D::Sprite* Sprite = new Render::D3D::Sprite(D3D);
-	Sprite->SetTexture("daydream_black.bmp");
-	Sprite->SetPos(Engine::Vector(100, 100));
+	Sprite->SetTexture("daydream_blue.bmp");
+	Sprite->SetPos(800 / 2, 600 / 2);
+	Sprite->SetCenter(512 / 2, 512 / 2);
+
+
+	//std::stringstream ss;
+	//std::ostringstream ss;
+	float alpha = 255;
 
 	while (Window->ProcessQueue())
 	{
 		Timer->Update();
 
-		int delta = Timer->Delta;
+		int delta = Timer->Delta / 1000;
 		int FPS = (int)Timer->FPS;
 
 		D3D->BeginScene();
-	
-			int delta_time = GetTickCount();
-
-			std::stringstream ss;
-			ss << "Delta time: " << delta << "\nFPS: " << FPS;
-			//std::cout << ss.str();
-			Text1->SetPos(0, 0);
+			std::ostringstream ss;
+			ss << "Delta time: " << Timer->Delta / 1000;
+			std::cout << ss.str() << std::endl;
 			Text1->SetText(ss.str());
 			Text1->Render();
 
 			// Render testsprite
-			Sprite->SetPos(800 / 2, 600 / 2);
-			Sprite->SetCenter(512 / 2, 512 / 2);
-			Sprite->Render();
+			if (alpha > 0)
+			{
+				Sprite->SetColor(255, 255, 255, (int)alpha);
+				//alpha = alpha * (0.0001 * delta);
+				alpha = (float)(alpha * 0.995);
+				Sprite->Render();
+			}
 
 		D3D->EndScene();
 
@@ -94,6 +106,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		// DEBUG: Sleep for a random ammount of time to test the FPS counter
 		//Sleep(rand() % 100 + 1);
 	}
+
+	/*
+	LARGE_INTEGER ticksPerSecond;
+	LARGE_INTEGER this_tick;
+
+	LARGE_INTEGER last_tick;
+	QueryPerformanceCounter(&last_tick);
+
+	// get the high resolution counter's accuracy
+	QueryPerformanceFrequency(&ticksPerSecond);
+
+	while (true)
+	{
+		QueryPerformanceCounter(&this_tick);
+		float ewelew = (this_tick.QuadPart - last_tick.QuadPart);
+		std::cout << ewelew << "\n";
+		last_tick = this_tick;
+	}
+	*/
 
 	return 0;
 }

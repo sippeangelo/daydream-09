@@ -9,6 +9,8 @@ public:
 	struct TimerInfo
 	{
 		int Delta;
+		int Delta_min;
+		int Delta_max;
 		float FPS;
 	};
 
@@ -20,6 +22,8 @@ public:
 	int StartTime;
 private:
 	int m_LastTick;
+
+	LARGE_INTEGER m_TicksPerSecond;
 
 	// FPS counter
 	static const int MAXSAMPLES = 100;

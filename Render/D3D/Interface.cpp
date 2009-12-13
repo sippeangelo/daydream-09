@@ -55,7 +55,7 @@ void Interface::BeginScene(bool clear)
 
 	// Start the sprite render
 	if (m_d3dspt != NULL)
-		m_d3dspt->Begin(NULL);
+		m_d3dspt->Begin(D3DXSPRITE_ALPHABLEND);
 }
 
 /*

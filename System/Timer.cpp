@@ -23,6 +23,8 @@ Timer::Timer(int start_offset)
 	m_TickSum = 0;
 	m_TickLogIndex = 0;
 	m_TickLogCurrentValueCount = 0;
+
+	QueryPerformanceFrequency(&m_TicksPerSecond);
 }
 
 Timer::TimerInfo Timer::Update()
@@ -30,7 +32,10 @@ Timer::TimerInfo Timer::Update()
 	TimerInfo info;
 
 	// Get current tick
-	int ThisTick = GetTickCount(); 
+	int ThisTick; 
+	LARGE_INTEGER liThisTick; 
+	QueryPerformanceCounter(&liThisTick);
+	ThisTick = liThisTick.QuadPart;
 
 	// Delta
 	int diff = (ThisTick - m_LastTick);
@@ -38,7 +43,7 @@ Timer::TimerInfo Timer::Update()
 	info.Delta = Delta;
 
 	// FPS Counter
-	if (diff == 0)
+	/*if (diff == 0)
 		diff = 1;
 
 	m_TickSum += diff;
@@ -49,9 +54,9 @@ Timer::TimerInfo Timer::Update()
 	if (m_TickLogCurrentValueCount <= MAXSAMPLES)
 		m_TickLogCurrentValueCount++;
 
-	FPS = 1000 / ((float)m_TickSum / m_TickLogCurrentValueCount);
+	FPS = m_TicksPerSecond.QuadPart / ((float)m_TickSum / m_TickLogCurrentValueCount);
 
-	info.FPS = FPS;
+	info.FPS = FPS;*/
 
 	// Update last tick
 	m_LastTick = ThisTick;
