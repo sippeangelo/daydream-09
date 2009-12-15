@@ -171,6 +171,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Engine\Font.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Engine\Vector.cpp"
 					>
 				</File>
@@ -234,6 +238,10 @@
 				>
 				<File
 					RelativePath=".\Engine\Color.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Engine\Font.h"
 					>
 				</File>
 				<File

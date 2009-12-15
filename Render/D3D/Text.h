@@ -3,6 +3,7 @@
 
 #include "Interface.h"
 #include <string>
+#include "../../Engine/Color.h"
 
 namespace Render { namespace D3D {
 	class Text

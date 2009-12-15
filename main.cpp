@@ -33,7 +33,6 @@ int main()
 {
 	Color col(50, 50, 50);
 
-	return 0;
 
 	// Hide the cursor
 	ShowCursor(true);

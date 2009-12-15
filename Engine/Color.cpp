@@ -25,3 +25,8 @@ Color::Color(int arg_r, int arg_g, int arg_b, int arg_a)
 	b = arg_b;
 	a = arg_a;
 }
+
+D3DCOLOR Color::GetD3D()
+{
+	return D3DCOLOR_ARGB(a, r, g, b);
+}

@@ -1,3 +1,8 @@
+#ifndef COLOR_H
+#define COLOR_H
+
+#include <d3dx9.h>
+
 class Color
 {
 public:
@@ -7,6 +12,7 @@ public:
 
 	Color(int r, int g, int b);
 	Color(int r, int g, int b, int a);
+	D3DCOLOR GetD3D();
 
 	// Red
 	int r;
@@ -17,3 +23,5 @@ public:
 	// Alpha
 	int a;
 };
+
+#endif
