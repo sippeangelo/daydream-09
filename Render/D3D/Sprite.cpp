@@ -57,6 +57,10 @@ void Sprite::SetCenter(float x, float y, float z)
 /*
 	Sprite::SetColor()
 */
+void Sprite::SetColor(Color col)
+{
+	m_Color = col.GetD3D();
+}
 void Sprite::SetColor(int r, int g, int b, int a)
 {
 	m_Color = D3DCOLOR_RGBA(r, g, b, a);

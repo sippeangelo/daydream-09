@@ -2,6 +2,7 @@
 #define TEXT_H
 
 #include "Interface.h"
+#include "Font.h"
 #include <string>
 #include "../../Engine/Color.h"
 
@@ -20,7 +21,7 @@ namespace Render { namespace D3D {
 		void Render(int length);
 		void SetText(std::string text);
 		std::string GetText();
-		void SetFont(std::string font_name, int font_size, int font_weight, bool italic);
+		void SetFont(Font font);
 		void SetPos(int x, int y);
 		Position GetPos();
 	private:

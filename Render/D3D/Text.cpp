@@ -7,25 +7,16 @@ Text::Text(Interface* d3d)
 	// Store the pointer to our Interface class
 	m_d3d = d3d;
 
-	SetFont("Courier", 20, FW_BOLD, false);
+	//SetFont("Courier", 20, FW_BOLD, false);
+	SetFont(Font(d3d, "Courier", 20, Color(255, 255, 255)));
 
 	m_pos_x = 0;
 	m_pos_y = 0;
 }
 
-void Text::SetFont(std::string font_name, int font_size, int font_weight, bool italic)
+void Text::SetFont(Font font)
 {
-	D3DXCreateFont(m_d3d->m_d3ddev,    // the Direct3D Device
-				   font_size, 0,    // font size twenty with the default width
-				   font_weight, // normal font weight
-				   1,    // no mipmap levels
-				   italic,    // not italic
-				   DEFAULT_CHARSET,    // default character set
-				   OUT_DEFAULT_PRECIS,    // default precision
-				   DEFAULT_QUALITY,    // default quality
-				   DEFAULT_PITCH || FF_DONTCARE,    // more defaults...
-				   font_name.c_str(),    // typeface "Arial"
-				   &m_Font);    // address of the font object created above
+	m_Font = font.GetD3D();
 }
 
 void Text::Render()

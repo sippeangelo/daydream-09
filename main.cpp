@@ -33,7 +33,6 @@ int main()
 {
 	Color col(50, 50, 50);
 
-
 	// Hide the cursor
 	ShowCursor(true);
 
@@ -57,7 +56,7 @@ int main()
 
 	// Some text
 	Render::D3D::Text* Text1 = new Render::D3D::Text(D3D);
-	Text1->SetFont("Courier New", 18, NULL, false);
+	Text1->SetFont(Font(D3D, "Courier New", 18, Color(255, 255, 255)));
 	Text1->SetPos(4, 0);
 
 	// A sprite
@@ -79,25 +78,25 @@ int main()
 	{
 		Timer->Update();
 
-		int delta = Timer->Delta / 1000;
+		int delta = Timer->DeltaTime / 1000;
 		int FPS = (int)Timer->FPS;
 
 		D3D->BeginScene();
-			std::ostringstream ss;
-			ss << "Delta time: " << Timer->Delta / 1000;
-			std::cout << ss.str() << std::endl;
-			Text1->SetText(ss.str());
-			Text1->Render();
-
 			// Render testsprite
 			if (alpha > 0)
 			{
-				Sprite->SetColor(255, 255, 255, (int)alpha);
+				std::cout << alpha << std::endl;
+				Sprite->SetColor(Color(255, 255, 255, (int)alpha));
 				//alpha = alpha * (0.0001 * delta);
-				alpha = (float)(alpha * 0.995);
+				alpha = (float)(alpha * (0.997 * Timer->DeltaFrames));
 				Sprite->Render();
 			}
 
+			std::ostringstream ss;
+			ss << "FPS: " << Timer->FPS << "\nTPS: " << Timer->TPS << "\nDelta time (ms): " << Timer->DeltaTime << "\nDelta time (sec): " << Timer->DeltaTime / 1000 << "\nSkipped frames: " << Timer->DeltaFrames;
+			//std::cout << ss.str() << std::endl;
+			Text1->SetText(ss.str());
+			Text1->Render();
 		D3D->EndScene();
 
 		D3D->Render();

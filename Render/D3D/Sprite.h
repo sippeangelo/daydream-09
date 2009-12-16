@@ -2,6 +2,7 @@
 #define SPRITE_H
 
 #include "Interface.h"
+#include "../../Engine/Color.h"
 #include "../../Engine/Vector.h"
 #include <string>
 
@@ -17,6 +18,7 @@ namespace Render { namespace D3D {
 		void SetCenter(Engine::Vector vec);
 		void SetCenter(float x, float y);
 		void SetCenter(float x, float y, float z);
+		void SetColor(Color col);
 		void SetColor(int r, int g, int b, int a);
 		void SetColor(D3DCOLOR col);
 		void Render();

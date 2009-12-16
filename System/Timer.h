@@ -17,8 +17,10 @@ public:
 	Timer();
 	Timer(int start);
 	TimerInfo Update();
-	int Delta;
+	double DeltaTime;
+	float DeltaFrames;
 	float FPS;
+	float TPS;
 	int StartTime;
 private:
 	int m_LastTick;

@@ -171,10 +171,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Engine\Font.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\Engine\Vector.cpp"
 					>
 				</File>
@@ -210,6 +206,10 @@
 					Name="D3D"
 					>
 					<File
+						RelativePath=".\Render\D3D\Font.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Render\D3D\Interface.cpp"
 						>
 					</File>
@@ -238,10 +238,6 @@
 				>
 				<File
 					RelativePath=".\Engine\Color.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Engine\Font.h"
 					>
 				</File>
 				<File
@@ -287,6 +283,10 @@
 				<Filter
 					Name="D3D"
 					>
+					<File
+						RelativePath=".\Render\D3D\Font.h"
+						>
+					</File>
 					<File
 						RelativePath=".\Render\D3D\Interface.h"
 						>
