@@ -25,7 +25,7 @@ Timer::Timer(int start_offset)
 	m_TickLogCurrentValueCount = 0;
 
 	QueryPerformanceFrequency(&m_TicksPerSecond);
-	TPS = m_TicksPerSecond.QuadPart;
+	TPS = 1.0 / m_TicksPerSecond.QuadPart;
 }
 
 Timer::TimerInfo Timer::Update()
@@ -39,12 +39,12 @@ Timer::TimerInfo Timer::Update()
 	ThisTick = liThisTick.QuadPart;
 
 	// Delta
-	int diff = (ThisTick - m_LastTick);
-	DeltaTime = diff / 1000; // Milliseconds
+	float diff = (float)(ThisTick - m_LastTick) * TPS;
+	DeltaTime = diff; // Milliseconds
 	info.Delta = DeltaTime;
 
 	// Skipped frames
-	DeltaFrames = 1 + (((float)DeltaTime / 1000) * (1.0 / (float)m_TicksPerSecond.QuadPart));
+	DeltaFrames = (DeltaTime / 1000) * TPS;
 
 	// FPS Counter
 	if (diff == 0)

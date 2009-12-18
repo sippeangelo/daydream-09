@@ -17,7 +17,7 @@ public:
 	Timer();
 	Timer(int start);
 	TimerInfo Update();
-	double DeltaTime;
+	float DeltaTime;
 	float DeltaFrames;
 	float FPS;
 	float TPS;
