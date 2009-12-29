@@ -37,14 +37,12 @@ Timer::TimerInfo Timer::Update()
 	LARGE_INTEGER liThisTick; 
 	QueryPerformanceCounter(&liThisTick);
 	ThisTick = liThisTick.QuadPart;
+	Time = ThisTick;
 
 	// Delta
-	float diff = (float)(ThisTick - m_LastTick) * TPS;
+	float diff = (float)(ThisTick - m_LastTick) / 1000;
 	DeltaTime = diff; // Milliseconds
 	info.Delta = DeltaTime;
-
-	// Skipped frames
-	DeltaFrames = (DeltaTime / 1000) * TPS;
 
 	// FPS Counter
 	if (diff == 0)
@@ -55,10 +53,10 @@ Timer::TimerInfo Timer::Update()
 	m_TickLog[m_TickLogIndex] = diff;
 	if (++m_TickLogIndex == MAXSAMPLES)
 		m_TickLogIndex = 0;
-	if (m_TickLogCurrentValueCount <= MAXSAMPLES)
+	if (m_TickLogCurrentValueCount < MAXSAMPLES)
 		m_TickLogCurrentValueCount++;
 
-	FPS = m_TicksPerSecond.QuadPart / ((float)m_TickSum / m_TickLogCurrentValueCount);
+	FPS = ((float)m_TickSum / m_TickLogCurrentValueCount);
 
 	info.FPS = FPS;
 

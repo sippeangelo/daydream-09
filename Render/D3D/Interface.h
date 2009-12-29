@@ -2,16 +2,19 @@
 #define INTERFACE_H
 
 #include <windows.h>
-#include <d3d9.h>
+#include <vector>
 #include <iostream>
+
+#include <d3d9.h>
+#pragma comment(lib, "d3d9.lib")
 #include <DXErr.h>
 #pragma comment(lib, "DXErr.lib")
 #include <d3dx9core.h>
 #pragma comment(lib, "d3dx9d.lib")
-#include "../../Engine/Window.h"
-#include "vertex_formats.h"
 
-#pragma comment(lib, "d3d9.lib")
+#include "../../Engine/Window.h"
+#include "RenderQueue.h"
+#include "vertex_formats.h"
 
 namespace Render { namespace D3D {
 	class Interface
@@ -34,6 +37,21 @@ namespace Render { namespace D3D {
 		// Render the scene
 		void Render();
 	private:
+		struct Vertex
+		{
+			Vertex(){}
+			Vertex(float x, float y, float z)
+			{
+				_x = x;
+				_y = y;
+				_z = z;
+			}
+			float _x, _y, _z;
+			static const DWORD FVF = D3DFVF_XYZ;
+		};
+
+		IDirect3DVertexBuffer9* VB;
+		IDirect3DIndexBuffer9* IB;
 
 	};
 } }

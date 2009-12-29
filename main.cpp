@@ -31,8 +31,6 @@ DWORD WINAPI _ConsoleThread(void* Param)
 //int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 int main()
 {
-	Color col(50, 50, 50);
-
 	// Hide the cursor
 	ShowCursor(true);
 
@@ -74,27 +72,35 @@ int main()
 	//std::ostringstream ss;
 	float alpha = 255;
 
+	Timer->Update();
+	float NextTick = Timer->Time + 50;
+
 	while (Window->ProcessQueue())
 	{
 		Timer->Update();
+		
+		if (Timer->Time >= NextTick)
+		{
+			if (alpha > 2)
+			{
+				//std::cout << alpha << std::endl;
+				//Sprite->SetColor(Color(255, 255, 255, (int)alpha));
+				//alpha = alpha * (0.0001 * delta);
+				alpha = (float)(alpha * 0.99);
+			}
 
-		int delta = Timer->DeltaTime / 1000;
-		int FPS = (int)Timer->FPS;
+			NextTick = Timer->Time + 50;
+		}
+
+		std::cout << Timer->DeltaTime << std::endl;
 
 		D3D->BeginScene();
 			// Render testsprite
-			if (alpha > 0)
-			{
-				std::cout << alpha << std::endl;
-				Sprite->SetColor(Color(255, 255, 255, (int)alpha));
-				//alpha = alpha * (0.0001 * delta);
-				alpha = (float)(alpha * (0.997 * Timer->DeltaFrames));
-				Sprite->Render();
-			}
+			Sprite->Render();
 
 			std::ostringstream ss;
-			ss << "FPS: " << Timer->FPS << "\nTPS: " << Timer->TPS << "\nDelta time (ms): " << Timer->DeltaTime << "\nDelta time (sec): " << Timer->DeltaTime / 1000 << "\nSkipped frames: " << Timer->DeltaFrames;
-			//std::cout << ss.str() << std::endl;
+			ss << "FPS: " << Timer->FPS << "\nDelta time (ms): " << Timer->DeltaTime << "\nDelta time (sec): " << Timer->DeltaTime / 1000;
+			std::cout << ss.str() << std::endl;
 			Text1->SetText(ss.str());
 			Text1->Render();
 		D3D->EndScene();

@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="EngineFramework"
+	Name="daydream"
 	ProjectGUID="{03CEA1A9-D79F-4405-9AFF-5EB3009CD7A6}"
 	RootNamespace="EngineFramework"
 	TargetFrameworkVersion="196613"
@@ -289,6 +289,10 @@
 					</File>
 					<File
 						RelativePath=".\Render\D3D\Interface.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Render\D3D\RenderQueue.h"
 						>
 					</File>
 					<File

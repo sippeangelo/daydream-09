@@ -24,11 +24,11 @@ namespace Render { namespace D3D {
 		void Render();
 
 	private:
-		Interface* m_d3d;
 		LPDIRECT3DTEXTURE9 m_Texture;
 		D3DXVECTOR3 m_Center;
 		D3DXVECTOR3 m_Position;
 		D3DCOLOR m_Color;
+		Interface* m_d3d;
 	};
 }}
 
