@@ -26,7 +26,7 @@ namespace Render { namespace D3D {
 		Position GetPos();
 	private:
 		Interface* m_d3d;
-		LPD3DXFONT m_Font;
+		Font m_Font;
 		std::string m_Text;
 
 		int m_pos_x;

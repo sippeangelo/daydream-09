@@ -1,5 +1,10 @@
 #include "Font.h"
 
+Font::Font()
+{
+
+}
+
 Font::Font(Render::D3D::Interface* d3d)
 {
 	m_d3d = d3d;

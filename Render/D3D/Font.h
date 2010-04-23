@@ -8,6 +8,7 @@
 class Font
 {
 public:
+	Font();
 	Font(Render::D3D::Interface* d3d);
 	Font(Render::D3D::Interface* d3d, std::string FontName, int size, Color col);
 

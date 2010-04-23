@@ -32,7 +32,7 @@ DWORD WINAPI _ConsoleThread(void* Param)
 int main()
 {
 	// Hide the cursor
-	ShowCursor(true);
+	//ShowCursor(false);
 
 	// Start the console thread
 	System::Thread* Thread = new System::Thread(&_ConsoleThread);
@@ -54,7 +54,7 @@ int main()
 
 	// Some text
 	Render::D3D::Text* Text1 = new Render::D3D::Text(D3D);
-	Text1->SetFont(Font(D3D, "Courier New", 18, Color(255, 255, 255)));
+	Text1->SetFont(Font(D3D, "Courier New", 18, Color(0, 0, 0)));
 	Text1->SetPos(4, 0);
 
 	// A sprite

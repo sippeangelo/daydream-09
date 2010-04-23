@@ -8,7 +8,7 @@ Text::Text(Interface* d3d)
 	m_d3d = d3d;
 
 	//SetFont("Courier", 20, FW_BOLD, false);
-	SetFont(Font(d3d, "Courier", 20, Color(255, 255, 255)));
+	SetFont(Font(d3d, "Courier New", 20, Color(255, 255, 255)));
 
 	m_pos_x = 0;
 	m_pos_y = 0;
@@ -16,7 +16,7 @@ Text::Text(Interface* d3d)
 
 void Text::SetFont(Font font)
 {
-	m_Font = font.GetD3D();
+	m_Font = font;
 }
 
 void Text::Render()
@@ -32,7 +32,7 @@ void Text::Render(int length)
 	static RECT textbox; 
 	SetRect(&textbox, m_pos_x, m_pos_y, 640, 480); 
 
-	m_Font->DrawTextA(NULL, m_Text.c_str(), length, &textbox, NULL, D3DCOLOR_ARGB(255, 255, 255, 255));
+	m_Font.GetD3D()->DrawTextA(NULL, m_Text.c_str(), length, &textbox, NULL, m_Font.GetColor().GetD3D());
 }
 
 void Text::SetText(std::string text)
