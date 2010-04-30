@@ -3,8 +3,8 @@
 
 #include <ostream>
 #include <math.h>
-#include <d3d9.h>
-#include <d3dx9core.h>
+//#include <d3d9.h> // HACK: Should not depend on DirectX
+//#include <d3dx9core.h> // HACK: Should not depend on DirectX
 
 namespace Engine
 {
@@ -32,7 +32,7 @@ public:
 	Vector &operator+=(float add);
 	Vector &operator-=(Vector &vec);
 	Vector &operator-=(float sub);
-	Vector &operator=(D3DXVECTOR3 &vec);
+	//Vector &operator=(D3DXVECTOR3 &vec); // HACK: Should not depend on DirectX
  
 	// Functions
 	Vector();

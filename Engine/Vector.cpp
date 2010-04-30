@@ -115,14 +115,14 @@ Vector &Vector::operator-=(float sub)
 	return *this;
 }
 
-Vector &Vector::operator=(D3DXVECTOR3 &vec)
+/*Vector &Vector::operator=(D3DXVECTOR3 &vec) // HACK: Should not depend on DirectX
 {
 	this->x -= vec.x;
 	this->y -= vec.y;
 	this->z -= vec.z;
 
 	return *this;
-}
+}*/
 
 /*
 

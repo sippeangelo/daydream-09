@@ -41,6 +41,8 @@ namespace Engine
 
 		void MakeWindow(WindowParams* wp);
 		BOOL ProcessQueue();
+
+		Engine::WindowParams* WindowParams;
 	private:
 		HINSTANCE hInstance;
 		int nCmdShow;

@@ -12,7 +12,7 @@ Color operator-(const Color &col1, const Color &col2)
 
 Color::Color()
 {
-	Set(NULL, NULL, NULL, NULL);
+	Set(0, 0, 0, 0);
 }
 
 Color::Color(int arg_r, int arg_g, int arg_b)
@@ -41,7 +41,7 @@ void Color::Set(int arg_r, int arg_g, int arg_b, int arg_a)
 	a = arg_a;
 }
 
-D3DCOLOR Color::GetD3D()
+/*D3DCOLOR Color::GetD3D() // HACK: Should not depend on DirectX
 {
 	return D3DCOLOR_ARGB(a, r, g, b);
-}
+}*/

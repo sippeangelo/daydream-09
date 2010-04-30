@@ -21,17 +21,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hWnd, message, wParam, lParam);
 } 
 
-Window::Window(WindowParams* wp)
+Window::Window(Engine::WindowParams* wp)
 {
 	//hInstance = NULL;
 	//nCmdShow = SW_SHOWNORMAL;
-	
+	this->WindowParams = wp;
 	MakeWindow(wp);
 }
 
 Window::Window(std::string title, int width, int height, bool fullscreen)
 {
-	WindowParams wp;
+	Engine::WindowParams wp;
 	wp.title = title;
 	wp.width = width;
 	wp.height = height;
@@ -40,7 +40,7 @@ Window::Window(std::string title, int width, int height, bool fullscreen)
 	MakeWindow(&wp);
 }
 
-void Window::MakeWindow(WindowParams* wp)
+void Window::MakeWindow(Engine::WindowParams* wp)
 {
 	// Fix the WindowParams
 	// HACK: This should be done somewhere else

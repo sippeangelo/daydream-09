@@ -1,7 +1,7 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-#include <d3dx9.h>
+//#include <d3dx9.h> // HACK: Should not depend on DirectX
 
 class Color
 {
@@ -15,7 +15,7 @@ public:
 	Color(int r, int g, int b, int a);
 	void Set(int arg_r, int arg_g, int arg_b);
 	void Set(int arg_r, int arg_g, int arg_b, int arg_a);
-	D3DCOLOR GetD3D();
+	//D3DCOLOR GetD3D(); // HACK: Should not depend on DirectX
 
 	// Red
 	int r;
