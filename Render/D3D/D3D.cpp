@@ -160,14 +160,14 @@ void D3D::EndScene()
 	// Rotate 45 degrees on x-axis
 	static float x = 0.0f;
 	D3DXMatrixRotationX(&Rx, x);
-	x += 0.005;
+	x += 0.005f;
 	if (x >= 6.28f)
 		x = 0.0;
 
 	// Increment y-rotation angle each frame
 	static float y = 0.0f;
 	D3DXMatrixRotationY(&Ry, y);
-	y += 0.005;
+	y += 0.005f;
 	if (y >= 6.28f)
 		y = 0.0;
 

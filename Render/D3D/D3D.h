@@ -1,7 +1,7 @@
 #ifndef D3D_H
 #define D3D_H
 
-#include "../Interface.h"
+#include "../IRenderer.h"
 
 #include <iostream>
 
@@ -15,7 +15,7 @@
 namespace Render
 {
 
-class D3D : public Interface
+class D3D : public IRenderer
 {
 public:
 	D3D(Engine::Window* Window);

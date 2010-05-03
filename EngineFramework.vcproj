@@ -203,7 +203,7 @@
 				Name="Render"
 				>
 				<File
-					RelativePath=".\Render\Interface.cpp"
+					RelativePath=".\Render\IRenderer.cpp"
 					>
 				</File>
 				<Filter
@@ -261,7 +261,7 @@
 				Name="Render"
 				>
 				<File
-					RelativePath=".\Render\Interface.h"
+					RelativePath=".\Render\IRenderer.h"
 					>
 				</File>
 				<Filter

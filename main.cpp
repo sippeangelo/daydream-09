@@ -3,7 +3,6 @@
 #include "Engine/Window.h"
 #include "System/Timer.h"
 #include "System/Thread.h"
-#include "Render/Interface.h"
 #include "Render/D3D/D3D.h"
 #include <iostream>
 #include <windows.h>
@@ -41,9 +40,11 @@ int main()
 	wp.fullscreen = false;
 	wp.vsync = false;
 	Engine::Window* Window = new Engine::Window(&wp);
+	printf("Original Window: %p\n", Window);
+	printf("Original Window: %p\n", Window);
 
 	// Set up a renderer
-	Render::Interface* Renderer = new Render::D3D(Window);
+	Render::IRenderer* Renderer = new Render::D3D(Window);
 
 	// Timer
 	System::Timer* Timer = new System::Timer();
@@ -54,7 +55,7 @@ int main()
 	{	
 		// Refresh timer
 		Timer->Update();
-		printf("FPS: %f\n", Timer->GetFPS());
+		//printf("FPS: %f\n", Timer->GetFPS());
 
 		Renderer->BeginScene();
 		Renderer->EndScene();
