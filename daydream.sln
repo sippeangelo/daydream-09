@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineFramework", "EngineFramework.vcproj", "{03CEA1A9-D79F-4405-9AFF-5EB3009CD7A6}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "daydream", "EngineFramework.vcxproj", "{03CEA1A9-D79F-4405-9AFF-5EB3009CD7A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

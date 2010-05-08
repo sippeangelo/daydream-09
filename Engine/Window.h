@@ -36,13 +36,12 @@ namespace Engine
 	public:
 		HWND hWnd;
 
-		Window(WindowParams* wp);
-		Window(std::string title, int width, int height, bool fullscreen);
+		Window();
 
 		void MakeWindow(WindowParams* wp);
 		BOOL ProcessQueue();
 
-		Engine::WindowParams* WindowParams;
+		Engine::WindowParams WindowParams;
 	private:
 		HINSTANCE hInstance;
 		int nCmdShow;

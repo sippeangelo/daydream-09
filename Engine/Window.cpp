@@ -21,35 +21,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hWnd, message, wParam, lParam);
 } 
 
-Window::Window(Engine::WindowParams* wp)
+Window::Window()
 {
 	//hInstance = NULL;
 	//nCmdShow = SW_SHOWNORMAL;
-	this->WindowParams = wp;
-	MakeWindow(wp);
-}
-
-Window::Window(std::string title, int width, int height, bool fullscreen)
-{
-	Engine::WindowParams wp;
-	wp.title = title;
-	wp.width = width;
-	wp.height = height;
-	wp.fullscreen = fullscreen;
-
-	MakeWindow(&wp);
 }
 
 void Window::MakeWindow(Engine::WindowParams* wp)
 {
+	this->WindowParams = *wp;
+
 	// Fix the WindowParams
 	// HACK: This should be done somewhere else
-	if (!wp->nCmdShow)
-		wp->nCmdShow = SW_SHOWNORMAL;
-	if (!wp->x)
-		wp->x = CW_USEDEFAULT;
-	if (!wp->y)
-		wp->y = CW_USEDEFAULT;
+	if (!this->WindowParams.nCmdShow)
+		this->WindowParams.nCmdShow = SW_SHOWNORMAL;
+	if (!this->WindowParams.x)
+		this->WindowParams.x = CW_USEDEFAULT;
+	if (!this->WindowParams.y)
+		this->WindowParams.y = CW_USEDEFAULT;
 
     // the handle for the window, filled by a function
     // this struct holds information for the window class
@@ -62,7 +51,7 @@ void Window::MakeWindow(Engine::WindowParams* wp)
     wc.cbSize = sizeof(WNDCLASSEX);
     wc.style = CS_HREDRAW | CS_VREDRAW;
 	wc.lpfnWndProc = WndProc;
-	wc.hInstance = wp->hInstance;
+	wc.hInstance = this->WindowParams.hInstance;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 	//wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
     wc.lpszClassName = "WindowClass1";
@@ -76,15 +65,15 @@ void Window::MakeWindow(Engine::WindowParams* wp)
 		style = WS_EX_TOPMOST | WS_POPUP;
     hWnd = CreateWindowEx(NULL,
                           "WindowClass1",    // name of the window class
-						  wp->title.c_str(),   // title of the window
+						  this->WindowParams.title.c_str(),   // title of the window
                           style,    // window style
-						  wp->x,    // x-position of the window
-						  wp->y,    // y-position of the window
-                          wp->width,    // width of the window
-                          wp->height,    // height of the window
+						  this->WindowParams.x,    // x-position of the window
+						  this->WindowParams.y,    // y-position of the window
+                          this->WindowParams.width,    // width of the window
+                          this->WindowParams.height,    // height of the window
                           NULL,    // we have no parent window, NULL
                           NULL,    // we aren't using menus, NULL
-                          wp->hInstance,    // application handle
+                          this->WindowParams.hInstance,    // application handle
                           NULL);    // used with multiple windows, NULL
 
 	// Now resize the window to the right resolution excluding the window borders, if any
@@ -94,10 +83,10 @@ void Window::MakeWindow(Engine::WindowParams* wp)
 	GetWindowRect(hWnd, &rcWindow);
 	ptDiff.x = (rcWindow.right - rcWindow.left) - rcClient.right;
 	ptDiff.y = (rcWindow.bottom - rcWindow.top) - rcClient.bottom;
-	MoveWindow(hWnd, rcWindow.left, rcWindow.top, wp->width + ptDiff.x, wp->height + ptDiff.y, TRUE);
+	MoveWindow(hWnd, rcWindow.left, rcWindow.top, this->WindowParams.width + ptDiff.x, this->WindowParams.height + ptDiff.y, TRUE);
 
     // display the window on the screen
-	ShowWindow(hWnd, wp->nCmdShow);
+	ShowWindow(hWnd, this->WindowParams.nCmdShow);
 }
 
 BOOL Window::ProcessQueue()

@@ -13,13 +13,46 @@
 #include <stdio.h>
 #include <time.h>
 
+// Error handling
+//#define ERROR(message) do { std::cout << "Daydream ERROR> " << message << " <" << __FILE__ << " (" << __LINE__ << ")\n"; } while(false)
+#define ERROR(message) Error(message, __FILE__, __LINE__);
+void Error(std::string message, char* file, int line)
+{
+	//std::cout << file << ":" << line << ": " << message << "\n";
+	printf("%s:%d:0x%X: %s\n", file, line, 1337, message.c_str());
+}
+void Error(int errorcode, char* file, int line)
+{
+	LPVOID lpMsgBuf;
+	if (!FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                NULL,
+                errorcode,
+                MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
+                (LPTSTR)&lpMsgBuf,
+                0,
+                NULL))
+	{	
+		if (GetLastError() == 317) // The system cannot find message text for message number 0x%1 in the message file for %2.
+			printf("%s:%d:0x%X: The system cannot find message text for message number %d (0x%0X)\n", file, line, GetLastError(), errorcode, errorcode);	
+		else // Some other unknown error
+			printf("%s:%d:0x%X: Format message failed with %d (0x%X)\n", __FILE__, __LINE__, GetLastError(), GetLastError(), GetLastError());	
+	}
+	else
+		printf("%s:%d:0x%X: %s", file, line, errorcode, (char*)lpMsgBuf);
+
+	// Free the buffer.
+	LocalFree(lpMsgBuf);
+}
+
+// UNDONE: Separate thread handles console I/O
 DWORD WINAPI _ConsoleThread(void* Param)
 {
 	Engine::WindowParams wp;
 	wp.title = "Developer Console";
 	wp.width = 800;
 	wp.height = 200;
-	Engine::Window* ConsoleWindow = new Engine::Window(&wp);
+	Engine::Window* ConsoleWindow = new Engine::Window();
+	ConsoleWindow->MakeWindow(&wp);
 
 	while (ConsoleWindow->ProcessQueue())
 	{
@@ -39,7 +72,8 @@ int main()
 	wp.height = 600;
 	wp.fullscreen = false;
 	wp.vsync = false;
-	Engine::Window* Window = new Engine::Window(&wp);
+	Engine::Window* Window = new Engine::Window();
+	Window->MakeWindow(&wp);
 	printf("Original Window: %p\n", Window);
 	printf("Original Window: %p\n", Window);
 

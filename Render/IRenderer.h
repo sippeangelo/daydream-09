@@ -21,7 +21,6 @@ public:
 		virtual void EndScene() = 0;
 		// Render the scene
 		virtual void Render() = 0;
-private:
 };
 }
 

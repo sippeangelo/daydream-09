@@ -26,16 +26,16 @@ D3D::D3D(Engine::Window* Window)
 
 	D3DPRESENT_PARAMETERS d3dpp;
 	ZeroMemory(&d3dpp, sizeof(d3dpp));
-	d3dpp.Windowed = !Window->WindowParams->fullscreen;
+	d3dpp.Windowed = !Window->WindowParams.fullscreen;
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.hDeviceWindow = Window->hWnd;
-	if (!Window->WindowParams->vsync)
+	if (!Window->WindowParams.vsync)
 		d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
-	if (Window->WindowParams->fullscreen)
+	if (Window->WindowParams.fullscreen)
 	{
 		d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
-		d3dpp.BackBufferWidth = Window->WindowParams->width;
-		d3dpp.BackBufferHeight = Window->WindowParams->height;
+		d3dpp.BackBufferWidth = Window->WindowParams.width;
+		d3dpp.BackBufferHeight = Window->WindowParams.height;
 	}
 
 	m_d3d->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, Window->hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &m_d3ddev);

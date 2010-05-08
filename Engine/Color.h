@@ -1,7 +1,7 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-//#include <d3dx9.h> // HACK: Should not depend on DirectX
+//#include <d3dx9.h> // HACK:: Should not depend on DirectX
 
 class Color
 {
