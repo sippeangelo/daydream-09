@@ -3,8 +3,8 @@
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="daydream"
-	ProjectGUID="{03CEA1A9-D79F-4405-9AFF-5EB3009CD7A6}"
-	RootNamespace="EngineFramework"
+	ProjectGUID="{12B7CB84-C4DC-4D65-89CB-D806C8CE1C24}"
+	RootNamespace="daydream"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
@@ -17,7 +17,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)..\bin\$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2"
@@ -84,7 +84,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)..\bin\$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2"
@@ -109,7 +109,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
 				DebugInformationFormat="3"
@@ -125,7 +125,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				GenerateDebugInformation="true"
+				LinkIncremental="1"
+				GenerateDebugInformation="false"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
@@ -158,24 +159,38 @@
 	<Files>
 		<Filter
 			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\main.cpp"
+				RelativePath="..\src\main.cpp"
 				>
 			</File>
 			<Filter
 				Name="Engine"
 				>
 				<File
-					RelativePath=".\Engine\Color.cpp"
+					RelativePath="..\src\Engine\Color.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Engine\Vector.cpp"
+					RelativePath="..\src\Engine\Color.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Engine\Window.cpp"
+					RelativePath="..\src\Engine\Vector.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\Engine\Vector.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\Engine\Window.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\Engine\Window.h"
 					>
 				</File>
 			</Filter>
@@ -183,19 +198,11 @@
 				Name="Entities"
 				>
 				<File
-					RelativePath=".\Entities\BaseEntity.cpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="System"
-				>
-				<File
-					RelativePath=".\System\Thread.cpp"
+					RelativePath="..\src\Entities\BaseEntity.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\System\Timer.cpp"
+					RelativePath="..\src\Entities\BaseEntity.h"
 					>
 				</File>
 			</Filter>
@@ -203,76 +210,88 @@
 				Name="Render"
 				>
 				<File
-					RelativePath=".\Render\IRenderer.cpp"
+					RelativePath="..\src\Render\IRender.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\Render\IRender.h"
 					>
 				</File>
 				<Filter
 					Name="D3D"
 					>
 					<File
-						RelativePath=".\Render\D3D\D3D.cpp"
+						RelativePath="..\src\Render\D3D\D3D.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\src\Render\D3D\D3D.h"
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="D3D9"
+					>
+					<File
+						RelativePath="..\src\Render\D3D9\D3D9.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\src\Render\D3D9\D3D9.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="D3D10"
+					>
+					<File
+						RelativePath="..\src\Render\D3D10\D3D10.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\src\Render\D3D10\D3D10.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="System"
+				>
+				<File
+					RelativePath="..\src\System\Thread.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\System\Thread.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\System\Timer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\System\Timer.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Util"
+				>
+				<File
+					RelativePath="..\src\Util\base64.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\Util\base64.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
-			<Filter
-				Name="Engine"
-				>
-				<File
-					RelativePath=".\Engine\Color.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Engine\Vector.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Engine\Window.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Entities"
-				>
-				<File
-					RelativePath=".\Entities\BaseEntity.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="System"
-				>
-				<File
-					RelativePath=".\System\Thread.h"
-					>
-				</File>
-				<File
-					RelativePath=".\System\Timer.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Render"
-				>
-				<File
-					RelativePath=".\Render\IRenderer.h"
-					>
-				</File>
-				<Filter
-					Name="D3D"
-					>
-					<File
-						RelativePath=".\Render\D3D\D3D.h"
-						>
-					</File>
-				</Filter>
-			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

@@ -61,8 +61,8 @@ void Window::MakeWindow(Engine::WindowParams* wp)
 
     // create the window and use the result as the handle
 	DWORD style = WS_OVERLAPPEDWINDOW;
-	if (wp->fullscreen)
-		style = WS_EX_TOPMOST | WS_POPUP;
+	//if (this->WindowParams.fullscreen)
+	//	style = WS_EX_TOPMOST | WS_POPUP;
     hWnd = CreateWindowEx(NULL,
                           "WindowClass1",    // name of the window class
 						  this->WindowParams.title.c_str(),   // title of the window

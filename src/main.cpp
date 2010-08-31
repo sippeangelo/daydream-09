@@ -3,7 +3,8 @@
 #include "Engine/Window.h"
 #include "System/Timer.h"
 #include "System/Thread.h"
-#include "Render/D3D/D3D.h"
+#include "Render/D3D9/D3D9.h" // Direct3D 9
+#include "Render/D3D10/D3D10.h" // Direct3D 10
 #include <iostream>
 #include <windows.h>
 //#include <d3dx9.h> // HACK: Should not depend on DirectX
@@ -70,15 +71,15 @@ int main()
 	wp.title = "Daydream Engine";
 	wp.width = 800;
 	wp.height = 600;
-	wp.fullscreen = false;
+	wp.fullscreen = true;
 	wp.vsync = false;
 	Engine::Window* Window = new Engine::Window();
 	Window->MakeWindow(&wp);
 	printf("Original Window: %p\n", Window);
-	printf("Original Window: %p\n", Window);
 
 	// Set up a renderer
-	Render::IRenderer* Renderer = new Render::D3D(Window);
+	Render::IRender* Renderer = new Render::D3D10();
+	Renderer->Initialize(Window);
 
 	// Timer
 	System::Timer* Timer = new System::Timer();
@@ -91,10 +92,12 @@ int main()
 		Timer->Update();
 		//printf("FPS: %f\n", Timer->GetFPS());
 
-		Renderer->BeginScene();
-		Renderer->EndScene();
+		//Renderer->BeginScene();
+		//Renderer->EndScene();
 		Renderer->Render();
 	}
+
+	delete Renderer;
 
 	/*
 	// Hide the cursor
