@@ -5,7 +5,8 @@
 #include <vector>
 #include <iostream>
 
-#include "../Engine/Window.h"
+#include "Engine/Window.h"
+#include "Engine/Color.h"
 
 namespace Render
 {
@@ -23,6 +24,7 @@ namespace Render
 		//virtual void EndScene() = 0;
 		// Render the scene
 		virtual void Render() = 0;
+		virtual void Render(Color col) = 0;
 	};
 }
 

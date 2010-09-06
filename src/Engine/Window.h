@@ -39,7 +39,8 @@ namespace Engine
 		Window();
 
 		void MakeWindow(WindowParams* wp);
-		BOOL ProcessQueue();
+		bool ProcessQueue();
+		bool Window::SetTitle(std::string title);
 
 		Engine::WindowParams WindowParams;
 	private:

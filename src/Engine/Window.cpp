@@ -1,8 +1,8 @@
 #include "Window.h"
 #include <iostream>
 
-using namespace Engine;
-
+namespace Engine
+{
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     // sort through and find what code to run for the message given
@@ -89,18 +89,27 @@ void Window::MakeWindow(Engine::WindowParams* wp)
 	ShowWindow(hWnd, this->WindowParams.nCmdShow);
 }
 
-BOOL Window::ProcessQueue()
+bool Window::ProcessQueue()
 {
 	MSG msg;
 
     if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
     {
         if (msg.message == WM_QUIT)
-            return NULL;
+            return false;
+
+		//std::cout << msg.message << "\n";
 
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
 
 	return true;
+}
+
+bool Window::SetTitle(std::string title)
+{
+	return SetWindowText(this->hWnd, title.c_str());
+}
+
 }

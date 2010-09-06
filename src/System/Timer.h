@@ -15,7 +15,8 @@ public:
 		float FPS;
 	};*/
 
-	Timer();
+	//Timer();
+	Timer(bool smooth);
 	bool SmoothFPS();
 	void SmoothFPS(bool mode);
 	void Update();
@@ -35,7 +36,7 @@ private:
 	*/
 
 	// FPS counter
-	static const int MAXSAMPLES = 100;
+	static const int MAXSAMPLES = 1000;
 	float m_TickLog[MAXSAMPLES];
 	float m_TickSum;
 	int m_TickLogIndex;

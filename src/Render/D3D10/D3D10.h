@@ -1,9 +1,9 @@
 #ifndef D3D10_H
 #define D3D10_H
 
-#include "../IRender.h"
-
-#include "../../Engine/Window.h"
+#include "Render/IRender.h"
+#include "Engine/Color.h"
+#include "Engine/Window.h"
 
 #include <d3d10.h>
 #pragma comment (lib, "d3d10.lib")
@@ -20,6 +20,7 @@ namespace Render
 
 		int Initialize(Engine::Window* Window);
 		void Render();
+		void Render(Color c);
 	private:
 		struct Vertex
 		{

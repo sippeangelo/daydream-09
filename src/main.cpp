@@ -16,13 +16,13 @@
 
 // Error handling
 //#define ERROR(message) do { std::cout << "Daydream ERROR> " << message << " <" << __FILE__ << " (" << __LINE__ << ")\n"; } while(false)
-#define ERROR(message) Error(message, __FILE__, __LINE__);
-void Error(std::string message, char* file, int line)
+#define DDERROR(message) DDError(message, __FILE__, __LINE__);
+void DDError(std::string message, char* file, int line)
 {
 	//std::cout << file << ":" << line << ": " << message << "\n";
 	printf("%s:%d:0x%X: %s\n", file, line, 1337, message.c_str());
 }
-void Error(int errorcode, char* file, int line)
+void DDError(int errorcode, char* file, int line)
 {
 	LPVOID lpMsgBuf;
 	if (!FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
@@ -72,29 +72,45 @@ int main()
 	wp.width = 800;
 	wp.height = 600;
 	wp.fullscreen = true;
-	wp.vsync = false;
+	wp.vsync = true;
 	Engine::Window* Window = new Engine::Window();
 	Window->MakeWindow(&wp);
-	printf("Original Window: %p\n", Window);
+	//printf("Original Window: %p\n", Window);
 
 	// Set up a renderer
 	Render::IRender* Renderer = new Render::D3D10();
 	Renderer->Initialize(Window);
 
-	// Timer
-	System::Timer* Timer = new System::Timer();
-	Timer->SmoothFPS(false);
 
+	// Timer
+	System::Timer* Timer = new System::Timer(false);
+	System::Timer* TimerSmooth = new System::Timer(true);
+	//Timer->SmoothFPS(true);
+
+	bool black = true;
+	Color col = Color(0, 0, 0);
+	int r_a = -1;
+	
 	while (Window->ProcessQueue())
 	//for (int i = 0; i < 5; i++)
 	{	
 		// Refresh timer
 		Timer->Update();
+		TimerSmooth->Update();
 		//printf("FPS: %f\n", Timer->GetFPS());
+		//std::stringstream ss;
+		//ss << "FPS: " << TimerSmooth->GetFPS() << " - " << Timer->GetFPS();
 
 		//Renderer->BeginScene();
 		//Renderer->EndScene();
-		Renderer->Render();
+		if (col.b == 255)
+			r_a = -1;
+		else if (col.b == 0)
+			r_a = 1;
+
+		col.b += r_a;
+
+		Renderer->Render(col);
 	}
 
 	delete Renderer;

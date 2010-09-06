@@ -3,8 +3,10 @@
 namespace System
 {
 
-Timer::Timer()
+Timer::Timer(bool smooth)
 {
+	m_SmoothFPS = smooth;
+
 	// Store performance frequency
 	QueryPerformanceFrequency((LARGE_INTEGER*)&m_Frequency);
 	// Save current time
@@ -20,13 +22,12 @@ Timer::Timer()
 	*/
 
 	// FPS counter
-	/*memset(m_TickLog, 0, MAXSAMPLES);
+	memset(m_TickLog, 0, MAXSAMPLES);
 	for (int i = 0; i < MAXSAMPLES; i++)
 		m_TickLog[i] = 0;
 	m_TickSum = 0;
 	m_TickLogIndex = 0;
-	m_TickLogCurrentValueCount = 0;*/
-
+	m_TickLogCurrentValueCount = 0;
 }
 
 void Timer::SmoothFPS(bool mode)
@@ -50,9 +51,9 @@ void Timer::Update()
 
 	// FPS smoothing
 	if (m_SmoothFPS)
-	{
-		m_TickSum += m_FPS;
+	{	
 		m_TickSum -= m_TickLog[m_TickLogIndex];
+		m_TickSum += m_FPS;
 		m_TickLog[m_TickLogIndex] = m_FPS;
 		if (++m_TickLogIndex == MAXSAMPLES)
 			m_TickLogIndex = 0;
