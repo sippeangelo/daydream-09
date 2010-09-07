@@ -24,7 +24,7 @@ namespace Render
 		//virtual void EndScene() = 0;
 		// Render the scene
 		virtual void Render() = 0;
-		virtual void Render(Color col) = 0;
+		virtual void Render(Color col, std::string text) = 0;
 	};
 }
 

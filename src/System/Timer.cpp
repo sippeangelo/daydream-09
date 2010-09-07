@@ -10,7 +10,7 @@ Timer::Timer(bool smooth)
 	// Store performance frequency
 	QueryPerformanceFrequency((LARGE_INTEGER*)&m_Frequency);
 	// Save current time
-	QueryPerformanceCounter((LARGE_INTEGER*)&m_LastTick);
+	//QueryPerformanceCounter((LARGE_INTEGER*)&m_LastTick);
 
 	//m_LastTick = GetTickCount() + start_offset;
 	/*int ThisTick = GetTickCount();
@@ -37,20 +37,20 @@ void Timer::SmoothFPS(bool mode)
 
 void Timer::Update()
 {
+	//if (m_LastTick == NULL)
+	//	QueryPerformanceCounter((LARGE_INTEGER*)&m_LastTick);
+
 	// Save current time
 	QueryPerformanceCounter((LARGE_INTEGER*)&m_ThisTick);
 
 	// Calculate difference in MS
 	m_DeltaTime = ((float)(m_ThisTick - m_LastTick) * 1000.0f) / m_Frequency;
 
-	// Update last time
-	m_LastTick = m_ThisTick;
-
 	// Calculate FPS
 	m_FPS = 1000 / m_DeltaTime;
 
 	// FPS smoothing
-	if (m_SmoothFPS)
+	if (m_SmoothFPS && m_LastTick != NULL)
 	{	
 		m_TickSum -= m_TickLog[m_TickLogIndex];
 		m_TickSum += m_FPS;
@@ -63,6 +63,8 @@ void Timer::Update()
 		m_FPS = m_TickSum / m_TickLogCurrentValueCount;
 	}
 
+	// Update last time
+	m_LastTick = m_ThisTick;
 
 	/*
 	__int64 freq, start, end, diff;

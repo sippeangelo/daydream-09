@@ -11,20 +11,20 @@ public:
 	friend Color operator-(const Color &col1, const Color &col2);
 
 	Color();
-	Color(int r, int g, int b);
-	Color(int r, int g, int b, int a);
-	void Set(int arg_r, int arg_g, int arg_b);
-	void Set(int arg_r, int arg_g, int arg_b, int arg_a);
+	Color(float r, float g, float b);
+	Color(float r, float g, float b, float a);
+	void Set(float arg_r, float arg_g, float arg_b);
+	void Set(float arg_r, float arg_g, float arg_b, float arg_a);
 	//D3DCOLOR GetD3D(); // HACK: Should not depend on DirectX
 
 	// Red
-	int r;
+	float r;
 	// Green
-	int g;
+	float g;
 	// Blue
-	int b;
+	float b;
 	// Alpha
-	int a;
+	float a;
 };
 
 #endif

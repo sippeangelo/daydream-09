@@ -36,7 +36,7 @@ private:
 	*/
 
 	// FPS counter
-	static const int MAXSAMPLES = 1000;
+	static const int MAXSAMPLES = 10;
 	float m_TickLog[MAXSAMPLES];
 	float m_TickSum;
 	int m_TickLogIndex;

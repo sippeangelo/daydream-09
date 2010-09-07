@@ -20,7 +20,7 @@ namespace Render
 
 		int Initialize(Engine::Window* Window);
 		void Render();
-		void Render(Color c);
+		void Render(Color c, std::string text);
 	private:
 		struct Vertex
 		{
@@ -38,6 +38,10 @@ namespace Render
 		ID3D10Device* m_d3ddev;
 		ID3D10RenderTargetView* m_d3drtv;
 		IDXGISwapChain* m_dxgiswapchain;
+
+		ID3DX10Font* m_testfont;
+
+		Engine::Window* m_wnd;
 	};
 }
 

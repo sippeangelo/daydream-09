@@ -15,25 +15,25 @@ Color::Color()
 	Set(0, 0, 0, 0);
 }
 
-Color::Color(int arg_r, int arg_g, int arg_b)
+Color::Color(float arg_r, float arg_g, float arg_b)
 {
 	Set(arg_r, arg_g, arg_b, 255);
 }
 
-Color::Color(int arg_r, int arg_g, int arg_b, int arg_a)
+Color::Color(float arg_r, float arg_g, float arg_b, float arg_a)
 {
 	Set(arg_r, arg_g, arg_b, arg_a);
 }
 
-void Color::Set(int arg_r, int arg_g, int arg_b)
+void Color::Set(float arg_r, float arg_g, float arg_b)
 {
 	r = arg_r;
 	g = arg_g;
 	b = arg_b;
-	a = 255;
+	a = 1;
 }
 
-void Color::Set(int arg_r, int arg_g, int arg_b, int arg_a)
+void Color::Set(float arg_r, float arg_g, float arg_b, float arg_a)
 {
 	r = arg_r;
 	g = arg_g;

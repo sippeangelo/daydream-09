@@ -81,7 +81,6 @@ int main()
 	Render::IRender* Renderer = new Render::D3D10();
 	Renderer->Initialize(Window);
 
-
 	// Timer
 	System::Timer* Timer = new System::Timer(false);
 	System::Timer* TimerSmooth = new System::Timer(true);
@@ -89,7 +88,7 @@ int main()
 
 	bool black = true;
 	Color col = Color(0, 0, 0);
-	int r_a = -1;
+	float r_a = -1;
 	
 	while (Window->ProcessQueue())
 	//for (int i = 0; i < 5; i++)
@@ -98,19 +97,27 @@ int main()
 		Timer->Update();
 		TimerSmooth->Update();
 		//printf("FPS: %f\n", Timer->GetFPS());
-		//std::stringstream ss;
-		//ss << "FPS: " << TimerSmooth->GetFPS() << " - " << Timer->GetFPS();
+		std::stringstream ss;
+		ss << "FPS: " << TimerSmooth->GetFPS() << " (" << Timer->GetFPS() << ")";
 
 		//Renderer->BeginScene();
 		//Renderer->EndScene();
-		if (col.b == 255)
-			r_a = -1;
-		else if (col.b == 0)
-			r_a = 1;
+		if (col.b > 1)
+			col.b = 1;
+		else if (col.b < 0)
+			col.b = 0;
 
-		col.b += r_a;
+		if (col.b >= 1)
+			r_a = -0.01f;
+		else if (col.b <= 0)
+			r_a = 0.01f;
 
-		Renderer->Render(col);
+		col.b += r_a * Timer->GetDelta();
+
+
+		//std::cout << "Col: " << col.b << "			Delta: " << Timer->GetDelta() << "\n";
+
+		Renderer->Render(col, ss.str());
 	}
 
 	delete Renderer;
