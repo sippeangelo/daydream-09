@@ -72,7 +72,7 @@ int main()
 	wp.width = 800;
 	wp.height = 600;
 	wp.fullscreen = true;
-	wp.vsync = true;
+	wp.vsync = false;
 	Engine::Window* Window = new Engine::Window();
 	Window->MakeWindow(&wp);
 	//printf("Original Window: %p\n", Window);
@@ -98,7 +98,7 @@ int main()
 		TimerSmooth->Update();
 		//printf("FPS: %f\n", Timer->GetFPS());
 		std::stringstream ss;
-		ss << "FPS: " << TimerSmooth->GetFPS() << " (" << Timer->GetFPS() << ")";
+		ss << "FPS: " << (int)TimerSmooth->GetFPS() << " (" << Timer->GetFPS() << ")";
 
 		//Renderer->BeginScene();
 		//Renderer->EndScene();
@@ -108,9 +108,9 @@ int main()
 			col.b = 0;
 
 		if (col.b >= 1)
-			r_a = -0.01f;
+			r_a = -0.001f;
 		else if (col.b <= 0)
-			r_a = 0.01f;
+			r_a = 0.001f;
 
 		col.b += r_a * Timer->GetDelta();
 
