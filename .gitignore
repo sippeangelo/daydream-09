@@ -1,0 +1,12 @@
+# No builds
+bin/*
+
+# No VC trash
+vc2010/ipch/*
+vc2010/*.sdf
+vc2010/*.opensdf
+vc2010/*.ncb
+vc*/Release/*
+vc*/Debug/*
+vc*/*.user
+vc*/*.suo
