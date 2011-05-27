@@ -41,6 +41,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)/../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -52,6 +53,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -60,7 +63,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Engine\Color.cpp" />
+    <ClCompile Include="..\src\Engine\Vector.cpp" />
+    <ClCompile Include="..\src\Engine\Window.cpp" />
+    <ClCompile Include="..\src\Entities\BaseEntity.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Render\D3D10\D3D10.cpp" />
+    <ClCompile Include="..\src\Render\D3D9\D3D9.cpp" />
+    <ClCompile Include="..\src\Render\D3D\D3D.cpp" />
+    <ClCompile Include="..\src\Render\IRender.cpp" />
+    <ClCompile Include="..\src\System\Thread.cpp" />
+    <ClCompile Include="..\src\System\Timer.cpp" />
+    <ClCompile Include="..\src\Util\base64.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,10 +13,67 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{d1fbf4ad-5bac-4812-beaa-1f629477b114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render">
+      <UniqueIdentifier>{6c9716ba-a935-4bc6-baea-40749b737d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{ce6d7461-522d-443e-ab70-bf38097f1825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{e758c8f1-d49c-42f7-82c5-fee15152f36a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{ea094d10-1c87-4188-a86a-e97d879a440c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render\D3D">
+      <UniqueIdentifier>{d64c7db0-c3c8-4ba0-835a-65d69a0a67bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render\D3D9">
+      <UniqueIdentifier>{0e6e95d1-7fe7-4bde-99ff-5aa51d76031f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render\D3D10">
+      <UniqueIdentifier>{5ce49b22-59ec-43c8-85f7-def326b8f578}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Entities\BaseEntity.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Util\base64.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\System\Thread.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\System\Timer.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Render\IRender.cpp">
+      <Filter>Source Files\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Render\D3D\D3D.cpp">
+      <Filter>Source Files\Render\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Render\D3D9\D3D9.cpp">
+      <Filter>Source Files\Render\D3D9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Render\D3D10\D3D10.cpp">
+      <Filter>Source Files\Render\D3D10</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Color.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Vector.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Window.cpp">
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
